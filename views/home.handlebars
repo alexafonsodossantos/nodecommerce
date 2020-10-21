@@ -1,0 +1,15 @@
+
+<h1>Lista de produtos</h1>
+
+            {{#each produtos}}
+            <h1>{{dataValues.nome}}</h1><br>
+            {{dataValues.descricao}}<br>
+            {{dataValues.preco_custo}}<br>
+            {{dataValues.preco_venda}}<br>
+            {{dataValues.qtd_estoque}}<br>
+            {{dataValues.qtd_vendidos}}<br>
+            {{dataValues.barcode}}<br>
+            <hr>
+
+            {{/each}}
+
