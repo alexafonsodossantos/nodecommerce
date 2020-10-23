@@ -17,4 +17,21 @@ var Produtos = sequelize.define('produtos', {
 
 });
 
-module.exports = Produtos
+
+var Usuarios = sequelize.define('produtos', {
+
+    login: { type: Sequelize.STRING },
+    email: { type: Sequelize.STRING },
+    nome_completo: { type: Sequelize.TEXT },
+    cpf: { type: Sequelize.TEXT },
+    cep: { type: Sequelize.TEXT },
+    endereco_l1: { type: Sequelize.TEXT },
+    endereco_l2: { type: Sequelize.TEXT },
+    cidade: { type: Sequelize.TEXT },
+    estado: { type: Sequelize.TEXT },
+
+});
+
+
+
+module.exports = Produtos, Usuarios
