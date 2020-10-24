@@ -1,0 +1,28 @@
+<div style="margin-left:3rem; margin-top:3rem; line-height: 3rem">
+
+
+{{#each produto}}
+
+
+<h1>{{dataValues.nome}}</h1> <br>
+Sobre o produto: {{dataValues.descricao}} <br>
+Preço: R$ {{dataValues.preco_venda}} <br>
+Disponíveis: {{dataValues.qtd_estoque}} <br>
+{{dataValues.qtd_vendidos}} unidades vendidas. <br>
+
+
+
+<form method="post" action="/purchase">
+
+<input type="hidden" name="id" value="{{dataValues.id}}">
+
+Quantidade: <input type="number" min="1" max="{{dataValues.qtd_estoque}}" value="1" name="qtd">
+
+<button type="submit"> Comprar </button>
+
+</form>
+
+
+{{/each}}
+
+</div>

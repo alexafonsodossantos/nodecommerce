@@ -1,3 +1,8 @@
+const userAuthenticated = true;
+const userId = 1;
+
+
+
 console.log('Carregando dependência: express')
 
     const express = require('express');
@@ -40,8 +45,11 @@ console.log('Definindo template engine...')
 
 
 console.log('Carregando dependência: /models/post.js')
-    const Produtos = require('./models/post')
-    const Usuarios = require('./models/post')
+
+    const Post = require('./models/post')
+    const Usuarios = Post.Usuarios
+    const Carts = Post.Carts
+    const Produtos = Post.Produtos
     
 
 console.log('Gerando rotas...')
@@ -61,25 +69,42 @@ console.log('Gerando rotas...')
 
     });
 
-    app.get("/product-detail", (req, res) => { 
 
-        res.send('Detalhes do produto');
 
-    });
 
 
     app.get("/login", (req, res) => { 
 
-        res.send('Faça login ou cadastre-se');
+        res.render('login');
 
     });
 
 
     app.get('/cart', (req, res)=>{
 
-        res.send('Meu carrinho');
+        res.render('cart');
 
     });
+
+    app.get('/product-details', (req, res)=>{
+
+        // Recebe o ID da Query realizada ao clicar na div contendo um link
+        // para a rota product-details (olha lá no home.handlebars :D )
+        
+        const id = req.query.id;
+
+        const produto = Produtos.findAll({
+            where: {
+              id: id
+            }
+          }).then(function(produto){
+
+            // Variáveis declaradas dentro desse arquivo podem ser inseridas
+            // dentro do Array passado no segundo argumento da função res.render()
+
+            res.render('product-details', {produto: produto}, );
+
+    })});
 
 
     app.get('/checkout', (req, res)=>{
@@ -115,6 +140,27 @@ console.log('Gerando rotas...')
 
         res.send('Lista de vendas efetuadas.');
 
+    });
+
+    app.post('/purchase', (req, res)=>{
+
+        Carts.create({
+
+            user_id: userId,
+            product_id: req.body.id,
+            product_qtd: req.body.qtd,
+
+
+        }).then(()=>{
+
+            res.render('cart').catch((erro)=> {
+            
+                res.send("Houston, temos um problema...")})
+            
+        })
+
+
+  
     });
 
 

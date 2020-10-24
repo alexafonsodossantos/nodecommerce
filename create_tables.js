@@ -50,35 +50,17 @@ const Usuarios = sequelize.define('usuarios', {
 
 })
 
-// Usuarios.create({
+const Carts = sequelize.define('carts', {
 
-//    login: "adsantos95",
-//    email: "aa.santos95@gmail.com",
-//   nome_completo: "Alex Afonso dos Santos",
-//    cpf: "447.868.378-65",
-//    cep: "13331-250",
-//    endereco_l1: "R. Uichi Miyake, 80",
-//    endereco_l2: "Colinas de Indaiatuba II",
-//    cidade: "Indaiatuba",
-//    estado: "SP" 
-//
-//});
+    user_id: { type: Sequelize.STRING },
+    product_id: { type: Sequelize.STRING },
+    product_qtd: { type: Sequelize.INTEGER },
 
-Produtos.sync({force: true});
-Vendas.sync({force: true});
 
-Usuarios.create({
+})
 
-    login: "adsantos95",
-    email: "aa.santos95@gmail.com",
-    nome_completo: "Alex Afonso dos Santos",
-    cpf: "447.868.378-65",
-    cep: "13331-250",
-    endereco_l1: "R. Uichi Miyake, 80",
-    endereco_l2: "Colinas de Indaiatuba II",
-    cidade: "Indaiatuba",
-    estado: "SP" 
 
-});
 
-module.exports = Produtos
+
+Carts.sync({force: true});
+module.exports = Produtos, Usuarios, Vendas, Carts

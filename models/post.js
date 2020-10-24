@@ -5,6 +5,9 @@ const sequelize = new Sequelize('loja', 'root', '12345', {
     dialect: "mysql"
 })
 
+
+
+
 var Produtos = sequelize.define('produtos', {
 
     nome: { type: Sequelize.STRING },
@@ -18,7 +21,7 @@ var Produtos = sequelize.define('produtos', {
 });
 
 
-var Usuarios = sequelize.define('produtos', {
+var Usuarios = sequelize.define('usuarios', {
 
     login: { type: Sequelize.STRING },
     email: { type: Sequelize.STRING },
@@ -33,5 +36,13 @@ var Usuarios = sequelize.define('produtos', {
 });
 
 
+var Carts = sequelize.define('carts', {
 
-module.exports = Produtos, Usuarios
+    user_id: { type: Sequelize.STRING },
+    product_id: { type: Sequelize.STRING },
+    product_qtd: { type: Sequelize.INTEGER },
+    
+});
+
+
+module.exports = { Produtos, Usuarios, Carts }
