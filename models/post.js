@@ -24,6 +24,7 @@ var Produtos = sequelize.define('produtos', {
 var Usuarios = sequelize.define('usuarios', {
 
     login: { type: Sequelize.STRING },
+    senha: { type: Sequelize.STRING },
     email: { type: Sequelize.STRING },
     nome_completo: { type: Sequelize.TEXT },
     cpf: { type: Sequelize.TEXT },

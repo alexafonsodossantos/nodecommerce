@@ -1,7 +1,3 @@
-const userAuthenticated = true;
-const userId = 1;
-
-
 
 console.log('Carregando dependência: express')
 
@@ -104,7 +100,8 @@ console.log('Gerando rotas...')
 
             res.render('product-details', {produto: produto}, );
 
-    })});
+        })
+    });
 
 
     app.get('/checkout', (req, res)=>{
@@ -163,6 +160,34 @@ console.log('Gerando rotas...')
   
     });
 
+    app.post('/authenticate' ,(req, res) => {
+
+        var usr = req.body.login
+        var pass = req.body.pass
+
+        console.log(usr)
+        console.log(pass)
+
+        const user = Usuarios.findAll({
+            where: {
+              login: usr
+            }
+          }).then(function(user){
+
+            // Variáveis declaradas dentro desse arquivo podem ser inseridas
+            // dentro do Array passado no segundo argumento da função res.render()
+            if(user.senha = pass){
+            res.send('Seja bem vindo!');
+
+        }else {
+            res.send('Fudeu negão');
+
+        }
+
+    })})
+
+        
+
 
     app.post('/save-product', (req, res) => {
 
@@ -190,6 +215,7 @@ console.log('Gerando rotas...')
             Usuarios.create({
     
                 login: req.body.login,
+                senha: req.body.senha,
                 email: req.body.email,
                 nome_completo: req.body.nome_completo,
                 cpf: req.body.cpf,

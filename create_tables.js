@@ -39,6 +39,7 @@ const Vendas = sequelize.define('vendas', {
 const Usuarios = sequelize.define('usuarios', {
 
     login: { type: Sequelize.STRING },
+    senha: { type: Sequelize.STRING },
     email: { type: Sequelize.STRING },
     nome_completo: { type: Sequelize.TEXT },
     cpf: { type: Sequelize.TEXT },
@@ -62,5 +63,5 @@ const Carts = sequelize.define('carts', {
 
 
 
-Carts.sync({force: true});
+Usuarios.sync({force: true});
 module.exports = Produtos, Usuarios, Vendas, Carts
